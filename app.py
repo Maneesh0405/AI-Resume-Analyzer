@@ -1,4 +1,5 @@
 import os
+import tempfile
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from analyzer import extract_text_from_pdf, calculate_ats_score
@@ -14,10 +15,10 @@ app = Flask(__name__,
 
 CORS(app)
 
-# Ensure uploads folder exists
-UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
+# Ensure uploads folder exists in a writable /tmp directory
+UPLOAD_FOLDER = os.path.join(tempfile.gettempdir(), 'uploads')
 if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5 MB max size
