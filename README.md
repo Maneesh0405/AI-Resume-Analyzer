@@ -89,7 +89,3 @@ AI-Resume-Analyzer/
 - Enhance the UI/UX with modern web frameworks.
 - Add support for `.docx` files.
 - Provide detailed paragraph-level feedback on the resume.
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
